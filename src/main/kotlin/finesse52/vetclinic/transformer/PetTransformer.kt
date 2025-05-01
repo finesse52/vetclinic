@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component
 
 @Component
 class PetTransformer {
-     fun toDto(pet: Pet): PetDTO {
+     fun toDTO(pet: Pet): PetDTO {
         return PetDTO(
             id = pet.id,
             name = pet.name,

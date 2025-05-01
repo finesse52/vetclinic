@@ -1,10 +1,8 @@
 package finesse52.vetclinic.service
 
 import finesse52.vetclinic.dto.CustomerDTO
-import finesse52.vetclinic.dto.PetDTO
 import finesse52.vetclinic.repository.CustomerRepository
 import finesse52.vetclinic.transformer.CustomerTransformer
-import finesse52.vetclinic.transformer.PetTransformer
 import jakarta.persistence.EntityNotFoundException
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
@@ -14,7 +12,7 @@ import java.util.*
 class CustomerService(
     private val customerRepository: CustomerRepository,
     private val customerTransformer: CustomerTransformer,
-    private val petTransformer: PetTransformer
+    private val petTransformer: CustomerTransformer
 ) {
     fun findCustomerById(id: UUID): CustomerDTO {
         val customer = customerRepository.findByIdOrNull(id) ?: throw EntityNotFoundException("Customer with ID $id not found")
@@ -44,10 +42,12 @@ class CustomerService(
         customerRepository.deleteById(id)
     }
 
-    fun getCustomersPets(customerId: UUID): List<PetDTO> {
-        val customer = customerRepository.findByIdOrNull(customerId) ?: throw EntityNotFoundException("Customer with ID $customerId not found")
-        return customer.pets.map { petTransformer.toDto(it) }
+    fun getCustomersPets(customerId: UUID): List<Unit> {
+        val customer = customerRepository.findByIdOrNull(customerId)
+            ?: throw EntityNotFoundException("Customer with ID $customerId not found")
+        return customer.pets.map { petTransformer.toDTO(customer)}
     }
+
 
     fun findCustomerByName(name: String): Optional<CustomerDTO> {
         return customerRepository.findByNameContainingIgnoreCase(name)
