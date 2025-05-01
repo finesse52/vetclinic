@@ -10,7 +10,7 @@ CREATE TABLE pets (
                       name VARCHAR(100) NOT NULL,
                       breed VARCHAR(100),
                       color VARCHAR(50),
-                      year_of_birth INT,
+                      year_of_birth DATE,
                       start_at DATE,
                       end_at DATE,
                       customer_id UUID NOT NULL,
