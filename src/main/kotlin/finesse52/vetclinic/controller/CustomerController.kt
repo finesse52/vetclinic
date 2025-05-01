@@ -15,7 +15,7 @@ import java.util.UUID
 
 @RestController
 @RequestMapping(value = ["/api/customers"])
-@Tag(name = "Customers", description = "operations related to pet Owners")
+@Tag(name = "Customers", description = "Operations related to pet Customers")
 class CustomerController(
     private val customerService: CustomerService
 ){
