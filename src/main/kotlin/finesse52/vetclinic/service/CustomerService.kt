@@ -1,6 +1,7 @@
 package finesse52.vetclinic.service
 
 import finesse52.vetclinic.dto.CustomerDTO
+import finesse52.vetclinic.dto.PetDTO
 import finesse52.vetclinic.repository.CustomerRepository
 import finesse52.vetclinic.transformer.CustomerTransformer
 import jakarta.persistence.EntityNotFoundException
@@ -42,15 +43,9 @@ class CustomerService(
         customerRepository.deleteById(id)
     }
 
-    fun getCustomersPets(customerId: UUID): List<Unit> {
-        val customer = customerRepository.findByIdOrNull(customerId)
-            ?: throw EntityNotFoundException("Customer with ID $customerId not found")
-        return customer.pets.map { petTransformer.toDTO(customer)}
-    }
-
-
     fun findCustomerByName(name: String): Optional<CustomerDTO> {
         return customerRepository.findByNameContainingIgnoreCase(name)
             .map { customerTransformer.toDTO(it) }
     }
+
 }
