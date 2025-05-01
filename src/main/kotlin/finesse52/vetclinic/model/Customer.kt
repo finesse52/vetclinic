@@ -2,6 +2,7 @@ package finesse52.vetclinic.model
 
 import jakarta.persistence.*
 import java.time.LocalDate
+import java.util.UUID
 
 @Entity
 @Table(name = "customers")
@@ -9,7 +10,7 @@ class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "customer_id")
-    var id: Long? = null
+    var id: UUID? = null
 
     @Column(name = "name")
     var name: String = ""

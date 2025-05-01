@@ -10,7 +10,7 @@ class Pet{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "pet_id")
-    var id: Long? = null
+    var id: UUID? = null
 
     @Column(name = "name")
     var name: String = ""
@@ -33,5 +33,4 @@ class Pet{
     @ManyToOne
     @JoinColumn(name = "customer_id")
     var customer: Customer? = null
-
 }

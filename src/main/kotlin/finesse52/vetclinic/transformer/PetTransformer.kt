@@ -4,7 +4,6 @@ import finesse52.vetclinic.dto.PetDTO
 import finesse52.vetclinic.model.Customer
 import finesse52.vetclinic.model.Pet
 import org.springframework.stereotype.Component
-import java.util.*
 
 @Component
 class PetTransformer {
